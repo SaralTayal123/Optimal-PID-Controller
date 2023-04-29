@@ -43,8 +43,8 @@
     
     In order to make the system control-affine for easy optimization, we linearize our approximate dynamics model about $X_{ref}$ and $U_{ref}$ to get the following Jacobians for each step $k \in [1, N] $ in the trajectory:
     \begin{align*}
-        A_k = \frac{\partial f}{\partial x}\bigg|_{x_{ref,k},u_{ref,k}} && 
-        B_k = \frac{\partial f}{\partial u}\bigg|_{x_{ref,k},u_{ref,k}}
+        A_k = \frac{\partial f}{\partial x}\bigg|_{x_{ref,k},u_{ref,k}} \in \R^{5\times 5}&& 
+        B_k = \frac{\partial f}{\partial u}\bigg|_{x_{ref,k},u_{ref,k}}  \in \R^{5\times 2}
     \end{align*}
     where $f(x,u)$ is our approximate discrete dynamics model, $X_{ref}$ is the optimal trajectory computed offline with approximate dynamics model, and $U_{ref}$ is the optimal controls computed offline with approximate dynamics model. \\
 %    - $X_{sim}$ (`Xsim`) -  Simulated trajectory with real dynamics model.
@@ -56,7 +56,7 @@
     \begin{align*}
         u_k = - \left[\strut P * \left(x_{k} - x_{ref,k}\right) + D (x_k - x_{k-1}) \strut \right]
     \end{align*}
-    where $P,D$ are the proportional and derivative control matrices to be found by our algorithm.
+    where $P,D \in \R^{2\times 5}$ are the proportional and derivative control matrices to be found by our algorithm.
     
     \pagebreak
     
@@ -67,7 +67,7 @@
         \st \quad & x_1 = x_{ref, 1} \vecln
         &         x_{k+1} = A_k x_k + B_k u_k \vecln
         &         u_k = - \left[\strut P * \left(x_{k} - x_{ref,k}\right) + D (x_k - x_{k-1}) \strut \right]
-    \end{align*}
+f    \end{align*}
     where $X, X_{ref}$ are the generated and reference trajectories respectively (a direct function of the states $x_k$), and $A_k, B_k$ are the Jacobians representing the linearized system dynamics as mentioned in Section \ref{sec:prob:control} above.
     
     \subsubsection{Without Regularization} \label{sec:prob:pdoptim:noreg}
@@ -97,7 +97,24 @@
 
     \subsubsection{Metrics} \label{sec:results:metrics}
 %    \textbf{TODO: Include metrics here, with references}
+    Borrowing from the robotics field (SLAM) \cite{metrics1}, two metrics based off the absolute root-mean-square error (RMSE) were included to gauge how well the optimizer performed in trajectory optimization:
+    \begin{itemize}
+        \item Absolute Position RMSE: RMSE positional difference between calculated and reference trajectory at each point \begin{align*}
+            \mathrm{RMSE}_{\mathrm{pos}} &= \transp{X - X_{ref}} * \mathrm{diag}\transbmat{1 & 1 & 0 & 0 & 0} * \left(X - X_{ref}\right) \fracln
+            &= \sqrt{\strut \dfrac{1}{N} \sum^N_{k=1} \left[\left(p_{x,k} - p_{xref, k}\right)^2 + \left(p_{y,k} - p_{yref, k}\right)^2\right]  \strut\strut }
+        \end{align*}
+        \item Absolute Orientation RMSE: RMSE orientational difference between calculated and reference trajectory at each point\begin{align*}
+            \mathrm{RMSE}_{\mathrm{orient}} &= \transp{X - X_{ref}} *  \mathrm{diag}\transbmat{0 & 0 & 1 & 0 & 0} * \left(X - X_{ref}\right) \fracln
+            &= \sqrt{\strut \dfrac{1}{N} \sum^N_{k=1} \left(\theta_{k} - \theta_{ref, k}\right)^2 \strut\strut }
+        \end{align*}
+    \end{itemize}
     
+    We also include the quadratic trajectory cost outlined in Section \ref{sec:prob:pdoptim:noreg} (simple cost without regularization) as metric to compare which trajectories were the hardest to optimize from a cost standpoint.
+
+    \subsubsection{Baseline: No Control Input}
+    We ran the tracker with no controller input (i.e. $P = D = 0$) as a baseline. The outputs are shown in Figure  below.
+    
+    \textbf{TODO: this part}
 
     \subsubsection{Without Regularization} \label{sec:results:singletraj:noreg}
     With the simple non-regularized quadratic cost, we found that our P/D matrices had very large values as shown below, and caused the optimizer to fail completely with infinite values for all metrics
@@ -124,6 +141,6 @@
     This project was a indeed good opportunity (especially for Samuel who was more new to the field) to learn more about optimal control theory, particularly dynamics and trajectory optimization. A bigger part of our learning process involved trying to formulate our optimization problem, using what we learnt in class. Since dynamics-aware and trajectory-aware control problems can be quite complicated, it was challenging to do so in a way that was intuitive, while staying convex and easily solvable. Originally, we had wanted to autotune Q/R matrices for optimal control, but quickly found that the formulation was too complex; eventually, we simplified the problem by focusing on PID control and autotuning (optimizing for) P/D matrices. Still, formulating the optimization problem from scratch was not exactly non-trivial, but we used the techniques learnt in class to do it. In particular, we first tried a quadratic cost function with linear constraints to formulate a simple quadratic programming problem, and when that cause the values to explode, we turned to L1 regularization, which worked very well. 
     
     \bibliographystyle{ieeetr}
-    \bibliography{cite.bib} 
+    \bibliography{cite.bib}
 \end{document}
 

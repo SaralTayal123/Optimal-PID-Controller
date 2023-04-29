@@ -1,3 +1,9 @@
-\begin{thebibliography}{}
+\begin{thebibliography}{1}
+
+\bibitem{metrics1}
+Z.~Zhang and D.~Scaramuzza, ``A tutorial on quantitative trajectory evaluation
+  for visual-inertial odometry,'' in {\em 2018 IEEE/RSJ International
+  Conference on Intelligent Robots and Systems (IROS)}, pp.~7244--7251, IEEE,
+  2018.
 
 \end{thebibliography}
