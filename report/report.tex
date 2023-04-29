@@ -97,7 +97,7 @@ f    \end{align*}
 
     \subsubsection{Metrics} \label{sec:results:metrics}
 %    \textbf{TODO: Include metrics here, with references}
-    Borrowing from the robotics field (SLAM) \cite{metrics1}, two metrics based off the absolute root-mean-square error (RMSE) were included to gauge how well the optimizer performed in trajectory optimization:
+    Borrowing from the robotics field of odometry \cite{metrics1}, two metrics based off the absolute root-mean-square error (RMSE) were included to gauge how well the optimizer performed in trajectory optimization:
     \begin{itemize}
         \item Absolute Position RMSE: RMSE positional difference between calculated and reference trajectory at each point \begin{align*}
             \mathrm{RMSE}_{\mathrm{pos}} &= \transp{X - X_{ref}} * \mathrm{diag}\transbmat{1 & 1 & 0 & 0 & 0} * \left(X - X_{ref}\right) \fracln
@@ -109,7 +109,7 @@ f    \end{align*}
         \end{align*}
     \end{itemize}
     
-    We also include the quadratic trajectory cost outlined in Section \ref{sec:prob:pdoptim:noreg} (simple cost without regularization) as metric to compare which trajectories were the hardest to optimize from a cost standpoint.
+    We also included the quadratic trajectory cost without regularization outlined in Section as a metric. It is mainly useful for debugging and comparing which trajectories were the hardest to optimize from a cost standpoint.
 
     \subsubsection{Baseline: No Control Input}
     We ran the tracker with no controller input (i.e. $P = D = 0$) as a baseline. The outputs are shown in Figure  below.

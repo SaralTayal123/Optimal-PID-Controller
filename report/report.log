@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023/Arch Linux) (preloaded format=pdflatex 2023.4.11)  29 APR 2023 13:50
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023/Arch Linux) (preloaded format=pdflatex 2023.4.11)  29 APR 2023 13:51
 entering extended mode
  \write18 enabled.
  %&-line parsing enabled.
@@ -961,10 +961,10 @@ b></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/share/t
 exmf-dist/fonts/type1/public/amsfonts/cm/cmti12.pfb></usr/share/texmf-dist/font
 s/type1/public/amsfonts/symbols/msbm10.pfb></usr/share/texmf-dist/fonts/type1/p
 ublic/cm-super/sfrm1200.pfb>
-Output written on report.pdf (5 pages, 237117 bytes).
+Output written on report.pdf (5 pages, 237098 bytes).
 PDF statistics:
- 177 PDF objects out of 1000 (max. 8388607)
- 136 compressed objects within 2 object streams
+ 176 PDF objects out of 1000 (max. 8388607)
+ 135 compressed objects within 2 object streams
  21 named destinations out of 1000 (max. 500000)
  122 words of extra memory for PDF output out of 10000 (max. 10000000)
 
