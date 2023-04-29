@@ -96,7 +96,8 @@
     \end{figure}
 
     \subsubsection{Metrics} \label{sec:results:metrics}
-    \textbf{TODO: Include metrics here, with references}
+%    \textbf{TODO: Include metrics here, with references}
+    
 
     \subsubsection{Without Regularization} \label{sec:results:singletraj:noreg}
     With the simple non-regularized quadratic cost, we found that our P/D matrices had very large values as shown below, and caused the optimizer to fail completely with infinite values for all metrics
@@ -109,6 +110,8 @@
                 -9.39 & 10.48  & -19.01 & 3.23 & 186.85}
         \end{align*}
     
+    \textbf{TODO: Explain why did it fail?}
+    
     \subsubsection{With Regularization} \label{sec:results:singletraj:wreg}
         \begin{align*}
 %            \hspace{-2em}
@@ -119,5 +122,8 @@
     \section{Learning Objectives}
     In this project, we originally set out to learn more about optimal control and how optimization can be applied to the field. 
     This project was a indeed good opportunity (especially for Samuel who was more new to the field) to learn more about optimal control theory, particularly dynamics and trajectory optimization. A bigger part of our learning process involved trying to formulate our optimization problem, using what we learnt in class. Since dynamics-aware and trajectory-aware control problems can be quite complicated, it was challenging to do so in a way that was intuitive, while staying convex and easily solvable. Originally, we had wanted to autotune Q/R matrices for optimal control, but quickly found that the formulation was too complex; eventually, we simplified the problem by focusing on PID control and autotuning (optimizing for) P/D matrices. Still, formulating the optimization problem from scratch was not exactly non-trivial, but we used the techniques learnt in class to do it. In particular, we first tried a quadratic cost function with linear constraints to formulate a simple quadratic programming problem, and when that cause the values to explode, we turned to L1 regularization, which worked very well. 
+    
+    \bibliographystyle{ieeetr}
+    \bibliography{cite.bib} 
 \end{document}
 
