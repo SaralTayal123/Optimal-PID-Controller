@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023/Arch Linux) (preloaded format=pdflatex 2023.4.11)  29 APR 2023 13:51
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023/Arch Linux) (preloaded format=pdflatex 2023.4.11)  29 APR 2023 21:21
 entering extended mode
  \write18 enabled.
  %&-line parsing enabled.
@@ -925,46 +925,65 @@ File: uwasy.fd 2020/01/19 v2.4 Wasy-2 symbol font definitions
 ) [1
 
 {/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}]
-<./img//trajectory.png, id=80, 280.1667pt x 176.5797pt>
+<./img//trajectory.png, id=96, 280.1667pt x 176.5797pt>
 File: ./img//trajectory.png Graphic file (type png)
 <use ./img//trajectory.png>
 Package pdftex.def Info: ./img//trajectory.png  used on input line 93.
 (pdftex.def)             Requested size: 216.81pt x 136.65114pt.
- [2] [3{/usr/share/texmf-dist/fonts/enc/dvips/cm-super/cm-super-ts1.enc} <./img
-//trajectory.png>]
-Overfull \hbox (100.70879pt too wide) detected at line 128
+ [2]
+<img/trajectory_nocontrol.png, id=105, 537.50812pt x 359.84438pt>
+File: img/trajectory_nocontrol.png Graphic file (type png)
+<use img/trajectory_nocontrol.png>
+Package pdftex.def Info: img/trajectory_nocontrol.png  used on input line 123.
+(pdftex.def)             Requested size: 260.17464pt x 174.17839pt.
+ [3{/usr/share/texmf-dist/fonts/enc/dvips/cm-super/cm-super-ts1.enc} <./img//tr
+ajectory.png>]
+Overfull \hbox (94.04207pt too wide) detected at line 137
 []
  []
 
-(./report.bbl [4]) [5] (./report.aux)
+<img/trajectory_pd_noreg.png, id=115, 736.25063pt x 493.845pt>
+File: img/trajectory_pd_noreg.png Graphic file (type png)
+<use img/trajectory_pd_noreg.png>
+Package pdftex.def Info: img/trajectory_pd_noreg.png  used on input line 141.
+(pdftex.def)             Requested size: 238.49231pt x 159.97023pt.
+[4 <./img/trajectory_nocontrol.png> <./img/trajectory_pd_noreg.png>]
+<img/trajectory_pd_reg.png, id=126, 536.75531pt x 361.35pt>
+File: img/trajectory_pd_reg.png Graphic file (type png)
+<use img/trajectory_pd_reg.png>
+Package pdftex.def Info: img/trajectory_pd_reg.png  used on input line 158.
+(pdftex.def)             Requested size: 260.17464pt x 175.14978pt.
+ [5 <./img/trajectory_pd_reg.png>] (./report.bbl) [6] (./report.aux)
 Package rerunfilecheck Info: File `report.out' has not changed.
-(rerunfilecheck)             Checksum: FE2AEBDA0C90F6CAC29A927C0C0F510B;1926.
+(rerunfilecheck)             Checksum: 8B0AEE78D1B124B431ED0DEEA32D6348;2736.
  ) 
 Here is how much of TeX's memory you used:
- 26551 strings out of 476025
- 485837 string characters out of 5796532
+ 26623 strings out of 476025
+ 487490 string characters out of 5796532
  1865388 words of memory out of 5000000
- 46468 multiletter control sequences out of 15000+600000
- 522614 words of font info for 69 fonts, out of 8000000 for 9000
+ 46525 multiletter control sequences out of 15000+600000
+ 525040 words of font info for 78 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 99i,17n,95p,1127b,572s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 99i,17n,95p,1127b,465s stack positions out of 5000i,500n,10000p,200000b,80000s
 </usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/share/
 texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/share/texmf-dist/fon
 ts/type1/public/amsfonts/cm/cmbxti10.pfb></usr/share/texmf-dist/fonts/type1/pub
 lic/amsfonts/cm/cmex10.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/c
-m/cmmi12.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb></
-usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/share/texmf
--dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texmf-dist/fonts/typ
-e1/public/amsfonts/cm/cmr12.pfb></usr/share/texmf-dist/fonts/type1/public/amsfo
-nts/cm/cmr8.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pf
-b></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/share/t
-exmf-dist/fonts/type1/public/amsfonts/cm/cmti12.pfb></usr/share/texmf-dist/font
-s/type1/public/amsfonts/symbols/msbm10.pfb></usr/share/texmf-dist/fonts/type1/p
-ublic/cm-super/sfrm1200.pfb>
-Output written on report.pdf (5 pages, 237098 bytes).
+m/cmmi10.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb><
+/usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb></usr/share/texm
+f-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/share/texmf-dist/fonts/ty
+pe1/public/amsfonts/cm/cmr10.pfb></usr/share/texmf-dist/fonts/type1/public/amsf
+onts/cm/cmr12.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pf
+b></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/
+texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/share/texmf-dist/font
+s/type1/public/amsfonts/cm/cmti10.pfb></usr/share/texmf-dist/fonts/type1/public
+/amsfonts/cm/cmti12.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/symb
+ols/msbm10.pfb></usr/share/texmf-dist/fonts/type1/public/cm-super/sfrm1200.pfb>
+
+Output written on report.pdf (6 pages, 359633 bytes).
 PDF statistics:
- 176 PDF objects out of 1000 (max. 8388607)
- 135 compressed objects within 2 object streams
- 21 named destinations out of 1000 (max. 500000)
- 122 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 223 PDF objects out of 1000 (max. 8388607)
+ 171 compressed objects within 2 object streams
+ 30 named destinations out of 1000 (max. 500000)
+ 169 words of extra memory for PDF output out of 10000 (max. 10000000)
 

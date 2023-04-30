@@ -73,14 +73,14 @@ f    \end{align*}
     \subsubsection{Without Regularization} \label{sec:prob:pdoptim:noreg}
     Our initial formulation without regularization involved a simple quadratic cost.
     \begin{align*}
-        \mathrm{Cost}(X, X_{ref}) = \transp{X - X_{ref}} Q \left(X - X_{ref}\right)
+        \mathcal{L}_Q = \mathrm{Cost}(X, X_{ref}) = \transp{X - X_{ref}} Q \left(X - X_{ref}\right)
     \end{align*}
     where $Q \curlygeq 0 $ is a quadratic cost matrix. Since the cost function is quadratic and the constraints are affine, we have a quadratic programming problem, which can be solved efficiently as noted in class.
     
     \subsection{With Regularization} \label{sec:prob:pdoptim:wreg}
     However, as noted in Section \ref{sec:results:singletraj:noreg}, the simple formulation results in exploding P and D values. To combat this, we add L1 regularization to the quadratic cost as follows:
     \begin{align*}
-        \mathrm{Cost}(X, X_{ref}) = \transp{X - X_{ref}} Q \left(X - X_{ref}\right) + \lambda \left(\strut \norm{P}_1 + \norm{D}_1 \strut \right)
+        \mathcal{L}_{Q,reg} = \mathrm{Cost}(X, X_{ref}) = \transp{X - X_{ref}} Q \left(X - X_{ref}\right) + \lambda \left(\strut \norm{P}_1 + \norm{D}_1 \strut \right)
     \end{align*}
     where $\lambda$ is a hyperparameter that affects the amount of regularization in the system. Although the L1 regularization makes the problem no longer quadratic, the problem is still convex and can be solved quite efficiently by proximal gradient descent.
     
@@ -111,32 +111,81 @@ f    \end{align*}
     
     We also included the quadratic trajectory cost without regularization outlined in Section as a metric. It is mainly useful for debugging and comparing which trajectories were the hardest to optimize from a cost standpoint.
 
+    \def\quadcost{\ensuremath{\mathcal{L}_Q}}
+    \def\rmsepos{\ensuremath{\mathrm{RMSE}_{\mathrm{pos}}}}
+    \def\rmseorient{\ensuremath{\mathrm{RMSE}_{\mathrm{orient}}}}
+
     \subsubsection{Baseline: No Control Input}
-    We ran the tracker with no controller input (i.e. $P = D = 0$) as a baseline. The outputs are shown in Figure  below.
+    We ran the tracker with no controller input (i.e. $P = D = 0$) as a baseline. The generated trajectory is shown in Figure \ref{fig:trajectorynocontrol} below.
     
-    \textbf{TODO: this part}
+    \begin{figure}[h!]
+        \centering
+        \includegraphics[width=0.6\linewidth]{img/trajectory_nocontrol}
+        \caption{Generated trajectory without control ($ P = D = 0$)}
+        \label{fig:trajectorynocontrol}
+    \end{figure}
 
     \subsubsection{Without Regularization} \label{sec:results:singletraj:noreg}
-    With the simple non-regularized quadratic cost, we found that our P/D matrices had very large values as shown below, and caused the optimizer to fail completely with infinite values for all metrics
+    With the simple non-regularized quadratic cost, we found that our P/D matrices had very large values, and caused the optimizer to fail completely, with infinite values for all metrics. See Section \ref{sec:discussion:failurecase} for a discussion on potential failure reasons.
         \begin{align*}
             \hspace{-2em}
             P &= \bmat{-25.48 & -43.88 & 228.95 & 904.98 & 1151.69 \\
-                -1.81 & -4.19 & 29.26 & -70.38 & -26.2} && 
+                -1.81 & -4.19 & 29.26 & -70.38 & -26.2} & 
             D &
             = \bmat{-130.93 & -71.37 & -1142.36 & 22.02 & 2424.28 \\
                 -9.39 & 10.48  & -19.01 & 3.23 & 186.85}
         \end{align*}
     
-    \textbf{TODO: Explain why did it fail?}
+    \begin{figure}[h!]
+        \centering
+        \includegraphics[width=0.55\linewidth]{img/trajectory_pd_noreg}
+        \caption{Calculated trajectory with no regularization}
+        \label{fig:trajectorypdnoreg}
+    \end{figure}
+    
+    \pagebreak
     
     \subsubsection{With Regularization} \label{sec:results:singletraj:wreg}
+    As can be seen in Figure \ref{fig:trajectorypdreg} below, regularization improves the generated trajectory signficantly and results in sparse $P $,$ D$ matrices with relatively small values, as expected from L1 regularization. 
         \begin{align*}
 %            \hspace{-2em}
-            P &= \bmat{-0.79 & 0.11 & 0 & 0 & 0 \\ -0.22 & -0.08 & 0 & 0 & 0} && 
+            P &= \bmat{-0.79 & 0.11 & 0 & 0 & 0 \\ -0.22 & -0.08 & 0 & 0 & 0} &
             D &= \bmat{-0.42 & 0 & 0 & 0 & 0 \\  0.2 & 0 & 0 & 0 & 0}
         \end{align*}
     
-    \section{Learning Objectives}
+    \begin{figure}[h!]
+        \centering
+        \includegraphics[width=0.6\linewidth]{img/trajectory_pd_reg}
+        \caption{Generated trajectory with regularization}
+        \label{fig:trajectorypdreg}
+    \end{figure}
+    
+    \subsubsection{Metrics Comparison} \label{sec:results:singletraj:metrics}
+    The metrics for the above cases are shown in Table \ref{tab:metrics:compare} below.
+    \begin{table}[h!]
+        \centering
+        \tabvpad{1.5}
+        \tabhpad{1.2em}
+        \caption{Comparison of Metrics (rounded to 3 d.p.)} \label{tab:metrics:compare}
+        \begin{tabular}{c|ccc}
+            \hline
+            & Baseline & With Reg. & \textit{Without Reg.}
+            \\ \hline
+            \rmsepos & 7.491 & 0.290 & $\infty$ \\
+            \rmseorient & 0.976 & 0.060 & $\infty$ \\
+            \quadcost & 314554.656 & 54.695  & $\infty$ \\
+            \hline
+        \end{tabular}
+    \end{table}
+    
+    As evident from Table \ref{tab:metrics:compare} above, the generated PD matrix using our algorithm (with regularization) clearly improved all metrics. The metrics for the optimization without regularization were all reported to be infinity, and we attempt to discuss why in Section \ref{sec:discussion:failurecase} below.
+    
+    \section{Discussion} \label{sec:discussion}
+    \subsection{Potential Reasons why Non-Regularized Quadratic Cost Failed} \label{sec:discussion:failurecase}
+    
+    \subsection{Effect of Regularization} \label{sec:discussion:regularization}
+    
+    \section{Learning Objectives} \label{sec:learningobjectives}
     In this project, we originally set out to learn more about optimal control and how optimization can be applied to the field. 
     This project was a indeed good opportunity (especially for Samuel who was more new to the field) to learn more about optimal control theory, particularly dynamics and trajectory optimization. A bigger part of our learning process involved trying to formulate our optimization problem, using what we learnt in class. Since dynamics-aware and trajectory-aware control problems can be quite complicated, it was challenging to do so in a way that was intuitive, while staying convex and easily solvable. Originally, we had wanted to autotune Q/R matrices for optimal control, but quickly found that the formulation was too complex; eventually, we simplified the problem by focusing on PID control and autotuning (optimizing for) P/D matrices. Still, formulating the optimization problem from scratch was not exactly non-trivial, but we used the techniques learnt in class to do it. In particular, we first tried a quadratic cost function with linear constraints to formulate a simple quadratic programming problem, and when that cause the values to explode, we turned to L1 regularization, which worked very well. 
     
