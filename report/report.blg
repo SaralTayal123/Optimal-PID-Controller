@@ -3,44 +3,46 @@ Capacity: max_strings=200000, hash_size=200000, hash_prime=170003
 The top-level auxiliary file: report.aux
 The style file: ieeetr.bst
 Database file #1: cite.bib
-You've used 1 entry,
+Warning--empty publisher in underactuated
+You've used 2 entries,
             1876 wiz_defined-function locations,
-            563 strings with 4594 characters,
-and the built_in function-call counts, 410 in all, are:
-= -- 42
-> -- 8
+            568 strings with 4672 characters,
+and the built_in function-call counts, 554 in all, are:
+= -- 55
+> -- 12
 < -- 0
-+ -- 3
-- -- 2
-* -- 25
-:= -- 56
-add.period$ -- 1
-call.type$ -- 1
++ -- 5
+- -- 3
+* -- 31
+:= -- 76
+add.period$ -- 3
+call.type$ -- 2
 change.case$ -- 1
 chr.to.int$ -- 0
-cite$ -- 1
-duplicate$ -- 23
-empty$ -- 41
-format.name$ -- 2
-if$ -- 100
+cite$ -- 3
+duplicate$ -- 32
+empty$ -- 60
+format.name$ -- 3
+if$ -- 136
 int.to.chr$ -- 0
-int.to.str$ -- 1
-missing$ -- 1
-newline$ -- 6
-num.names$ -- 1
-pop$ -- 6
+int.to.str$ -- 2
+missing$ -- 3
+newline$ -- 10
+num.names$ -- 2
+pop$ -- 13
 preamble$ -- 1
 purify$ -- 0
 quote$ -- 0
-skip$ -- 19
+skip$ -- 20
 stack$ -- 0
 substring$ -- 40
-swap$ -- 11
+swap$ -- 12
 text.length$ -- 0
 text.prefix$ -- 0
 top$ -- 0
 type$ -- 0
-warning$ -- 0
-while$ -- 4
-width$ -- 2
-write$ -- 12
+warning$ -- 1
+while$ -- 5
+width$ -- 3
+write$ -- 20
+(There was 1 warning)

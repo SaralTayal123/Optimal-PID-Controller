@@ -1,5 +1,9 @@
 \begin{thebibliography}{1}
 
+\bibitem{underactuated}
+R.~Tedrake, {\em Underactuated Robotics}.
+\newblock 2023.
+
 \bibitem{metrics1}
 Z.~Zhang and D.~Scaramuzza, ``A tutorial on quantitative trajectory evaluation
   for visual-inertial odometry,'' in {\em 2018 IEEE/RSJ International
